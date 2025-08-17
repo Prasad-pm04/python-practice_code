@@ -1,0 +1,48 @@
+import random
+import time
+
+# Let's pretend it's Monday, and I suddenly remember I need groceries.
+grocery_list = []
+
+# Function to simulate remembering something important (or not)
+def maybe_remember(item):
+    # I have a 70% chance to remember something — not bad, right?
+    if random.random() < 0.7:
+        print(f"💡 Oh! I should get {item}.")
+        grocery_list.append(item)
+    else:
+        print(f"😕 Hmm... I feel like I forgot something...")
+
+# Items I need, but they come to me slowly over the week
+week_items = {
+    "Monday": "milk",
+    "Tuesday": "eggs",
+    "Wednesday": "bread",
+    "Thursday": "bananas",
+    "Friday": "coffee"
+}
+
+# Simulate each day of the work week
+for day, item in week_items.items():
+    print(f"\n📅 It's {day}...")
+    maybe_remember(item)
+    # Let's pause a bit — simulating the day passing
+    time.sleep(1)  # Just for effect; remove or reduce if testing
+
+# Weekend hits! Time to go shopping
+print("\n🛍️ Saturday - Time to go shopping!")
+print("Here's what I remembered to buy:")
+
+# Let's be honest, I always forget *something*
+for i, item in enumerate(grocery_list, start=1):
+    print(f"{i}. {item}")
+
+# If I forgot too many things, let's acknowledge it
+if len(grocery_list) < len(week_items):
+    forgotten = set(week_items.values()) - set(grocery_list)
+    print("\n😬 I totally forgot these:")
+    for item in forgotten:
+        print(f"- {item}")
+else:
+    print("\n✅ Nailed it. I remembered everything!")
+
